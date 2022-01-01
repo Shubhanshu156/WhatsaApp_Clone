@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ShowStatus">
+
+    <pt.tornelas.segmentedprogressbar.SegmentedProgressBar
+        android:id="@+id/progrs"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_gravity="top"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:segmentStrokeColor="@android:color/black"
+        app:segmentSelectedStrokeColor="@android:color/black"
+        app:segmentStrokeWidth="1dp"
+        app:segmentCornerRadius="2dp"
+        app:segmentMargins="@dimen/default_segment_margin"
+        app:totalSegments="1"
+        app:timePerSegment="10000"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <com.github.chrisbanes.photoview.PhotoView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/statuspic"
+            android:src="@drawable/ic_baseline_person_24"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/statustext"
+            android:text="unable to load image"
+            android:visibility="gone"
+            android:textSize="22sp"
+            android:layout_marginLeft="20dp"
+
+            android:layout_centerInParent="true"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        <!--view to handle move to previous image-->
+            <View
+                android:id="@+id/reverse"
+                android:layout_width="100dp"
+                android:layout_gravity="end"
+                android:layout_height="match_parent"
+              />
+
+        <!--view to move to the next image-->
+        <View
+            android:id="@+id/skip"
+            android:layout_width="100dp"
+            android:layout_marginLeft="200dp"
+            android:layout_height="match_parent"
+             />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

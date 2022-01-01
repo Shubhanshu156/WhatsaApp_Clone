@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item>
+        <shape
+            android:shape="oval">
+
+            <solid
+                android:color="@color/teal_200"/>
+
+            <size
+                android:width="1dp"
+                android:height="1dp"/>
+            <padding
+                android:right="4dp"
+                android:left="4dp"
+                android:top="4dp"
+                android:bottom="4dp"/>
+
+        </shape>
+
+
+    </item>
+    <item android:drawable="@drawable/outline_add_24"
+        />
+
+
+</layer-list>

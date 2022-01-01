@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/verify"
+        android:textStyle="bold"
+        android:textColor="@color/teal_200"
+        android:text="Verify +9123132123"
+        android:layout_gravity="center_horizontal"
+        android:textSize="22sp"
+
+        android:padding="4dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/counter"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="Verify +9123132123"
+        android:visibility="gone"
+        android:layout_gravity="center_horizontal"
+        android:textSize="17sp"
+
+        android:padding="4dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/waiting"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Waiting to Automatically detect SMS Sent to"
+          android:textSize="17sp"
+        android:padding="4dp"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/otp"
+        android:gravity="left"
+        android:layout_marginTop="16dp"
+        android:imeActionId="6"
+        android:imeOptions="actionUnspecified"
+        android:inputType="phone"
+        android:letterSpacing="0.8"
+        android:maxLines="1"
+        android:hint="------"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:textAlignment="center"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter 6 Digit Code"
+        android:layout_gravity="center"
+        android:padding="4sp"
+        android:textSize="16sp"/>
+<com.google.android.material.button.MaterialButton
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="30dp"
+    android:text="CHECK"
+    android:id="@+id/check"
+    />
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_height="wrap_content"
+        android:text="RESEND SMS"
+        android:enabled="false"
+        android:id="@+id/resend"
+        />
+
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.App" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/newclr</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+    <style name="CustomMediumShapeAppearance">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">22dp</item>
+        <item name="cornerSizeBottomLeft">8dp</item>
+        <item name="cornerSizeBottomRight">22dp</item>
+        <item name="cornerSizeTopRight">22dp</item>
+    </style>
+
+    <style name="ChatShapeApperance">
+
+        <item name="cornerSizeTopLeft">11dp</item>
+        <item name="cornerSizeBottomLeft">11dp</item>
+        <item name="cornerSizeBottomRight">12dp</item>
+        <item name="cornerSizeTopRight">12dp</item>
+    </style>
+
+    <style name="RoundedImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">60dp</item>
+    </style>
+
+
+
+    <style name="RoundedImageViewSmall">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style></resources>

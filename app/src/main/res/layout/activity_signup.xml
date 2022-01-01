@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SignupActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profile Information"
+        android:textSize="22sp"
+        android:textColor="@color/teal_200"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="Please provide Your Name and Profile Photo"
+        android:textSize="17sp"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/userimage"
+
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="centerCrop"
+
+
+        android:src="@drawable/ic_baseline_person_24"
+
+        app:shapeAppearanceOverlay="@style/RoundedImageView"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:id="@+id/username"
+        android:layout_marginStart="30dp"
+        android:hint="Enter your Name"
+        android:imeActionLabel="Send"
+        android:imeOptions="actionUnspecified"
+        android:maxLines="4"
+        android:singleLine="true"
+        android:textSize="16sp"/>
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Next"
+        android:id="@+id/nexbtn2"
+        android:layout_marginTop="20dp"/>
+</LinearLayout>

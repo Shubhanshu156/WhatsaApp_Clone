@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".statusFragment">
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:id="@+id/setstatus"
+    >
+<RelativeLayout
+    android:layout_width="70dp"
+    android:id="@+id/myimage"
+android:layout_marginLeft="10dp"
+    android:layout_height="70dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+
+        android:id="@+id/selfimage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:adjustViewBounds="true"
+        android:clickable="true"
+        android:focusable="true"
+        android:scaleType="centerCrop"
+
+        android:src="@drawable/ic_baseline_person_24"
+        app:shapeAppearanceOverlay="@style/RoundedImageViewSmall" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        app:cardCornerRadius="20dp"
+        android:backgroundTint="@color/teal_200"
+        android:layout_height="30dp">
+
+<ImageView
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:id="@+id/setstatusa"
+    android:background="@drawable/outline_add_24"
+    android:layout_alignParentRight="true"
+    android:backgroundTint="@color/white"
+    android:layout_alignParentBottom="true"/>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>
+
+    <TextView
+        android:id="@+id/mystatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/myimage"
+        android:text="My Status"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mystatus"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/tap"
+        android:layout_toRightOf="@id/myimage"
+        android:text="Tap to add status update" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/statusrcv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tap"
+        android:layout_marginTop="30dp"
+        tools:listitem="@layout/listitem1" />
+
+
+</RelativeLayout>
+</FrameLayout>
