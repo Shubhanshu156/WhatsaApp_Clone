@@ -47,6 +47,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/otp"
         android:gravity="left"
+        android:textColor="@color/white"
         android:layout_marginTop="16dp"
         android:imeActionId="6"
         android:imeOptions="actionUnspecified"
@@ -57,7 +58,8 @@
         android:layout_gravity="center"
         android:padding="10dp"
         android:singleLine="true"
-        android:textAlignment="center"/>
+
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,6 +79,7 @@
         android:layout_marginHorizontal="30dp"
         android:layout_height="wrap_content"
         android:text="RESEND SMS"
+
         android:enabled="false"
         android:id="@+id/resend"
         />

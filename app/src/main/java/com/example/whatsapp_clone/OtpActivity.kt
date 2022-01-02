@@ -38,7 +38,7 @@ lateinit var mCountertimer:CountDownTimer
         progressDialog.show()
         val intent=intent
         phonenumber= intent.getStringExtra("PHONENUMBER").toString()
-        Toast.makeText(this@OtpActivity, phonenumber, Toast.LENGTH_SHORT).show()
+
         verify.text="Verify $phonenumber"
         initview()
         startverify()
@@ -49,14 +49,14 @@ lateinit var mCountertimer:CountDownTimer
 
             if (!code.isNullOrEmpty() && !mverificationid.isNullOrEmpty()){
 
-                Toast.makeText(this@OtpActivity, "check for null", Toast.LENGTH_SHORT).show()
+
             val credential=PhoneAuthProvider.getCredential(mverificationid!!,code)
 
 
                 signInWithPhoneAuthCredential(credential)
 
         }
-            Toast.makeText(this@OtpActivity, "after null", Toast.LENGTH_SHORT).show()
+
 
 
         }
@@ -86,7 +86,7 @@ lateinit var mCountertimer:CountDownTimer
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)}
         catch (e:Exception){
-            Toast.makeText(this@OtpActivity, "not ffsf", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@OtpActivity, e.message, Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -121,11 +121,11 @@ lateinit var mCountertimer:CountDownTimer
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
 
                 val smscode:String?=credential.smsCode
-                Toast.makeText(this@OtpActivity, smscode.toString(), Toast.LENGTH_SHORT).show()
+
                 if (!smscode.isNullOrBlank()) {
                     if (smscode.isNotEmpty()){
 
-                        Toast.makeText(this@OtpActivity, "smscode", Toast.LENGTH_SHORT).show()
+
 
                     }
                 }
@@ -146,7 +146,10 @@ lateinit var mCountertimer:CountDownTimer
                     Toast.makeText(this@OtpActivity, e.message, Toast.LENGTH_SHORT).show()
                 }
                 else{
-                    Toast.makeText(this@OtpActivity, "not working at all", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@OtpActivity, "Unknown Error", Toast.LENGTH_SHORT).show()
+                    val im=Intent(this@OtpActivity,LoginActivity::class.java)
+                    startActivity(im)
+                    finish()
                 }
             }
 
@@ -168,7 +171,7 @@ lateinit var mCountertimer:CountDownTimer
     }
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
-        Toast.makeText(this, "checking", Toast.LENGTH_SHORT).show()
+
 
         mAuth.signInWithCredential(credential).addOnCompleteListener{
             if (it.isSuccessful)
@@ -179,7 +182,7 @@ lateinit var mCountertimer:CountDownTimer
                 val intent=Intent(this@OtpActivity,SignupActivity::class.java)
                 startActivity(intent)
                 finish()
-                Toast.makeText(this@OtpActivity, "welcome you are signin", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@OtpActivity, "welcome you are Signed-In", Toast.LENGTH_SHORT).show()
             }
 
         else{
@@ -187,7 +190,10 @@ lateinit var mCountertimer:CountDownTimer
                     progressDialog.dismiss()
                 }
 
-                Toast.makeText(this@OtpActivity, "no Working", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@OtpActivity, "Unknown Error", Toast.LENGTH_SHORT).show()
+                val i=Intent(this,LoginActivity::class.java)
+                startActivity(i)
+                finish()
         }
 
     }}

@@ -143,7 +143,7 @@ class statusFragment : Fragment() {
             layoutManager=LinearLayoutManager(context)
         }
         parent.setstatusa.setOnClickListener{
-            Toast.makeText(context, "nothingmean nothing", Toast.LENGTH_SHORT).show()
+
             val getIntent = Intent(Intent.ACTION_GET_CONTENT)
             getIntent.type = "image/*"
 
@@ -205,6 +205,12 @@ class statusFragment : Fragment() {
 
 
         }
+            else{
+                progressDialog.dismiss()
+            }
+        }
+        else{
+            progressDialog.dismiss()
         }
     }
 
@@ -215,11 +221,9 @@ class statusFragment : Fragment() {
     }
     fun uploadimage(it: Uri?) {
 
-        Toast.makeText(context, "nothing here", Toast.LENGTH_SHORT).show()
 
         val ref = storage.reference.child("status/" + UUID.randomUUID().toString())
         val uploadTask = ref.putFile(it!!)
-//        Toast.makeText(this@SignupActivity, "nothing here", Toast.LENGTH_SHORT).show()
         uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
             if (!task.isSuccessful) {
                 task.exception?.let {
@@ -251,8 +255,9 @@ class statusFragment : Fragment() {
                         Log.d(TAG, "after adding download url"+statuspic)
                         val nextuser=USER(name,imageUrl,thumbImage,deviceToken,status,online,uid,number,statuspic)
                         FirebaseFirestore.getInstance().collection("users").document(mauth.uid!!).set(nextuser).addOnSuccessListener {
-                            progressDialog.dismiss()
+
                             Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show()
+                            progressDialog.dismiss()   
 
                         }
 

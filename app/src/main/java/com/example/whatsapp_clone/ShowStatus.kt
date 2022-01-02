@@ -7,9 +7,7 @@ import kotlinx.android.synthetic.main.activity_show_status.*
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.Toast
+
 import com.github.chrisbanes.photoview.PhotoView
 import com.squareup.picasso.Callback
 import java.lang.Exception
@@ -64,7 +62,7 @@ goback.setOnClickListener {
         progress = findViewById<SegmentedProgressBar>(R.id.progrs)
         progress.segmentCount = images.size
         Picasso.get().load(images[0]).placeholder(R.drawable.ic_baseline_person_24).into(statuspic)
-        Toast.makeText(this@ShowStatus, "loaded success", Toast.LENGTH_SHORT).show()
+
 
         progrs.start()
 
@@ -74,7 +72,7 @@ goback.setOnClickListener {
              */
             override fun onFinished() {
                 finish()
-                Toast.makeText(this@ShowStatus, "finished", Toast.LENGTH_SHORT).show()
+
             }
 
             override fun onPage(oldPageIndex: Int, newPageIndex: Int) {
@@ -102,47 +100,6 @@ goback.setOnClickListener {
         skip.setOnClickListener {
             progress.next()
         }
-    }
-
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        return when (event!!.action) {
-
-            MotionEvent.ACTION_DOWN -> {
-                // when we touch or tap on the screen
-                Log.d(TAG, "Action was DOWN")
-                Toast.makeText(this, "action was down", Toast.LENGTH_SHORT).show()
-                true}
-                MotionEvent.ACTION_MOVE -> {
-                    // while pressing on the screen,
-                    // we move our finger
-                    Log.d(TAG, "Action was MOVE")
-                    Toast.makeText(this, "action was move", Toast.LENGTH_SHORT).show()
-
-                    true
-                }
-                MotionEvent.ACTION_UP -> {
-                    // Lifting up the finger after
-                    // pressing on the screen
-                    Log.d(TAG, "Action was UP")
-                    Toast.makeText(this, "action was up", Toast.LENGTH_SHORT).show()
-
-                    true
-                }
-                MotionEvent.ACTION_CANCEL -> {
-                    Log.d(TAG, "Action was CANCEL")
-                    Toast.makeText(this@ShowStatus, "action was cancel", Toast.LENGTH_SHORT).show()
-
-                    true
-                }
-                MotionEvent.ACTION_OUTSIDE -> {
-                    Log.d(TAG, "Movement occurred outside of screen element")
-                    Toast.makeText(this@ShowStatus, "action was move outside", Toast.LENGTH_SHORT).show()
-
-                    true
-                }
-                else -> super.onTouchEvent(event)
-
-            }
     }
 
 

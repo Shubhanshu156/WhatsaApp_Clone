@@ -2,6 +2,7 @@ package com.example.whatsapp_clone
 
 import android.Manifest
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -34,6 +35,7 @@ import android.content.SharedPreferences
 
 class SignupActivity : AppCompatActivity() {
     lateinit var nexbtn:Button
+    lateinit var progressDialog: ProgressDialog
     val storage by lazy {
         FirebaseStorage.getInstance()
     }
@@ -51,6 +53,10 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_signup)
+        progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Uploading ")
+        progressDialog.setMessage("Updating Your Status, please wait")
+
         userimage.setLayerType(View.LAYER_TYPE_HARDWARE, null);
         nexbtn=findViewById(R.id.   nexbtn2)
         nexbtn.setOnClickListener {
@@ -70,6 +76,7 @@ class SignupActivity : AppCompatActivity() {
                     val intent=Intent(this,MainActivity::class.java)
                     startActivity(intent)
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                    finish()
 
                 }.addOnFailureListener {
                     Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
@@ -120,6 +127,10 @@ class SignupActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        progressDialog = ProgressDialog(this)
+        progressDialog.setTitle("Uploading ")
+        progressDialog.setMessage("Updating Your Profile Pic, please wait")
+        progressDialog.show()
         if (resultCode == Activity.RESULT_OK && requestCode == 1000) {
             Toast.makeText(this@SignupActivity, "success", Toast.LENGTH_SHORT).show()
             if (data != null) {
@@ -127,12 +138,15 @@ class SignupActivity : AppCompatActivity() {
                     userimage.setImageURI(it)
                     try {
                         uploadimage(it)
+
                     }
                     catch (e: Exception) {
-                        Log.d(TAG, "onActivityResult: " + e.message)
+                        progressDialog.dismiss()
+                        Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
                     }
                 }}
                 else{
+                    progressDialog.dismiss()
                     Toast.makeText(
                         this@SignupActivity,
                         "$resultCode$requestCode",
@@ -143,11 +157,11 @@ class SignupActivity : AppCompatActivity() {
             }}
         fun uploadimage(it: Uri?) {
 
-                Toast.makeText(this@SignupActivity, "nothing here", Toast.LENGTH_SHORT).show()
+
                 nexbtn2.isEnabled = false
                 val ref = storage.reference.child("uploads/" + mAuth.uid.toString())
                 val uploadTask = ref.putFile(it!!)
-                Toast.makeText(this@SignupActivity, "nothing here", Toast.LENGTH_SHORT).show()
+
                 uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
                     if (!task.isSuccessful) {
                         task.exception?.let {
@@ -159,8 +173,9 @@ class SignupActivity : AppCompatActivity() {
                     if (it.isSuccessful) {
                         downloadurl = it.result.toString()
                         nexbtn2.isEnabled = true
-                        Log.d(TAG, "uploadimage: $downloadurl")
+                       progressDialog.dismiss()
                     } else {
+                        progressDialog.dismiss()
                         Toast.makeText(
                             this@SignupActivity,
                             it.exception!!.message.toString(),
