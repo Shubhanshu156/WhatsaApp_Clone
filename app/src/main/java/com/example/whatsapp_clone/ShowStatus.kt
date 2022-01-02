@@ -24,6 +24,8 @@ import pt.tornelas.segmentedprogressbar.SegmentedProgressBar
 import pt.tornelas.segmentedprogressbar.SegmentedProgressBarListener
 import android.view.MotionEvent
 import android.view.View.OnTouchListener
+import com.vanniktech.emoji.EmojiManager
+import com.vanniktech.emoji.google.GoogleEmojiProvider
 
 
 class ShowStatus : AppCompatActivity() {
@@ -35,10 +37,28 @@ class ShowStatus : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        EmojiManager.install(GoogleEmojiProvider())
         setContentView(R.layout.activity_show_status)
+
         val i = intent
         images = intent.getStringArrayListExtra("images")!!
+        val dp=intent.getStringExtra("dp")
+        val nm=intent.getStringExtra("nm")
+        Log.d(TAG, "onCreate: "+dp+nm)
+        if (dp==null || nm==null){
+            statstv.visibility=View.GONE
+            statuswatch.visibility=View.GONE
 
+        }
+        else {
+            statstv.visibility=View.VISIBLE
+            statuswatch.visibility=View.VISIBLE
+            statstv.text = nm
+            Picasso.get().load(dp).placeholder(R.drawable.ic_baseline_person_24).into(statuswatch)
+        }
+goback.setOnClickListener {
+    finish()
+}
 
 //
         progress = findViewById<SegmentedProgressBar>(R.id.progrs)

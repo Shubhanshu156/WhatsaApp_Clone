@@ -37,6 +37,8 @@ class StatusViewHolder internal constructor(itemView: View) :
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, ShowStatus::class.java)
                 intent.putStringArrayListExtra("images", user.statuspic)
+                intent.putExtra("dp",user.imageUrl)
+                intent.putExtra("nm",user.name)
 
                 itemView.context.startActivity(intent)
             }

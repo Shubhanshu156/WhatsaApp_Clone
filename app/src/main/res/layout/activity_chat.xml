@@ -13,48 +13,59 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:elevation="10dp"
+
         android:theme="@style/ThemeOverlay.MaterialComponents.Dark"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
         app:contentInsetStartWithNavigation="0dp"
-        app:navigationIcon="?attr/homeAsUpIndicator"
+
         app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/gobackasap"
+            android:src="@drawable/ic_baseline_arrow_back_24" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/userImgView"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
             android:adjustViewBounds="true"
             android:clickable="true"
             android:focusable="true"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_baseline_person_24"
             app:shapeAppearanceOverlay="@style/RoundedImageViewSmall" />
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-        <com.vanniktech.emoji.EmojiTextView
-            android:id="@+id/nameTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:ellipsize="end"
-            android:lines="1"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:text="Shubhanshu Sharma" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="20sp"
-            android:id="@+id/userstatus"
-            android:visibility="gone"
-            android:text="Online"/>
-</LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.vanniktech.emoji.EmojiTextView
+                android:id="@+id/nameTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Shubhanshu Sharma" />
+
+            <TextView
+                android:id="@+id/userstatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Online"
+                android:textSize="20sp"
+                android:visibility="gone" />
+        </LinearLayout>
 
 
         <ImageView
@@ -66,7 +77,6 @@
             android:backgroundTint="@color/white"
             android:src="@drawable/ic_baseline_call_24" />
     </com.google.android.material.appbar.MaterialToolbar>
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeToLoad"
         android:layout_width="match_parent"

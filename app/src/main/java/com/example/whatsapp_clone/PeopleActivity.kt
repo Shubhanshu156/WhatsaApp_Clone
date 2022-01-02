@@ -26,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.auth.User
+import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.activity_people.*
 import java.lang.Exception
 
@@ -33,6 +34,7 @@ import java.lang.Exception
 class PeopleActivity : AppCompatActivity() {
     lateinit var madapter: FirestoreRecyclerAdapter<USER, RecyclerView.ViewHolder>
     val TAG="HELLO"
+    lateinit var currentUser:USER
     val mauth=FirebaseAuth.getInstance()
     var query: Query = FirebaseFirestore.getInstance().collection("users")
     val database by lazy {
@@ -43,6 +45,16 @@ class PeopleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_people)
         setSupportActionBar(peopltoolbar)
+        FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
+            .addOnSuccessListener {
+                currentUser = it.toObject(USER::class.java)!!
+                val a=USER(currentUser.name,currentUser.imageUrl,currentUser.thumbImage,currentUser.deviceToken,currentUser.status,"online",currentUser.uid,currentUser.number,currentUser.statuspic)
+                FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).set(a).addOnSuccessListener {
+                    Log.d(TAG, "onCreate: now user is online")
+                }.addOnFailureListener {
+                    Log.d(TAG, "onCreate: "+it.localizedMessage)
+                }
+            }
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val options: FirestoreRecyclerOptions<USER> =
             FirestoreRecyclerOptions.Builder<USER>()
@@ -118,6 +130,16 @@ class PeopleActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
+            .addOnSuccessListener {
+                currentUser = it.toObject(USER::class.java)!!
+                val a=USER(currentUser.name,currentUser.imageUrl,currentUser.thumbImage,currentUser.deviceToken,currentUser.status,"online",currentUser.uid,currentUser.number,currentUser.statuspic)
+                FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).set(a).addOnSuccessListener {
+                    Log.d(TAG, "onCreate: now user is online")
+                }.addOnFailureListener {
+                    Log.d(TAG, "onCreate: "+it.localizedMessage)
+                }
+            }
         madapter.startListening()
         madapter.notifyDataSetChanged()
     }
@@ -129,6 +151,36 @@ class PeopleActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
+            .addOnSuccessListener {
+                currentUser = it.toObject(USER::class.java)!!
+                val a=USER(currentUser.name,currentUser.imageUrl,currentUser.thumbImage,currentUser.deviceToken,currentUser.status,"online",currentUser.uid,currentUser.number,currentUser.statuspic)
+                FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).set(a).addOnSuccessListener {
+                    Log.d(TAG, "onCreate: now user is online")
+                }.addOnFailureListener {
+                    Log.d(TAG, "onCreate: "+it.localizedMessage)
+                }
+            }
+
+    }
+
+
+
+    override fun onPause() {
+        super.onPause()
+        FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
+            .addOnSuccessListener {
+                currentUser = it.toObject(USER::class.java)!!
+                val a=USER(currentUser.name,currentUser.imageUrl,currentUser.thumbImage,currentUser.deviceToken,currentUser.status,"offline",currentUser.uid,currentUser.number,currentUser.statuspic)
+                FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).set(a).addOnSuccessListener {
+                    Log.d(TAG, "now user is offline")
+                }
+            }
+        Log.d(TAG, "onPause: activity pause")
+
+    }
 
 
 

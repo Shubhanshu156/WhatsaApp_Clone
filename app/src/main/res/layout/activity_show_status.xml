@@ -7,23 +7,73 @@
     android:orientation="vertical"
     tools:context=".ShowStatus">
 
+
     <pt.tornelas.segmentedprogressbar.SegmentedProgressBar
         android:id="@+id/progrs"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:layout_gravity="top"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         app:layout_constraintStart_toStartOf="parent"
 
-        app:segmentStrokeColor="@android:color/black"
-        app:segmentSelectedStrokeColor="@android:color/black"
-        app:segmentStrokeWidth="1dp"
+        app:segmentStrokeWidth="0.5dp"
         app:segmentCornerRadius="2dp"
         app:segmentMargins="@dimen/default_segment_margin"
         app:totalSegments="1"
         app:timePerSegment="10000"/>
+
+
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/goback"
+        android:src="@drawable/ic_baseline_arrow_back_24"/>
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:adjustViewBounds="true"
+        android:clickable="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:cropToPadding="true"
+        android:focusable="true"
+        android:id="@+id/statuswatch"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_baseline_person_24"
+        app:shapeAppearanceOverlay="@style/RoundedImageViewSmall" />
+
+
+
+
+
+    <com.vanniktech.emoji.EmojiTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/statstv"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        tools:text="Shubhanshu Sharma"
+        android:text="lskdfnlfnd"/>
+</LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,26 +93,25 @@
             android:layout_marginLeft="20dp"
 
             android:layout_centerInParent="true"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-        <!--view to handle move to previous image-->
+            <!--view to handle move to previous image-->
             <View
                 android:id="@+id/reverse"
                 android:layout_width="100dp"
-                android:layout_gravity="end"
                 android:layout_height="match_parent"
-              />
+                android:layout_gravity="end" />
 
-        <!--view to move to the next image-->
-        <View
-            android:id="@+id/skip"
-            android:layout_width="100dp"
-            android:layout_marginLeft="200dp"
-            android:layout_height="match_parent"
-             />
+            <!--view to move to the next image-->
+            <View
+                android:id="@+id/skip"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="200dp" />
         </LinearLayout>
     </RelativeLayout>
 

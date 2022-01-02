@@ -52,33 +52,21 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    override fun onDestroy() {
-        super.onDestroy()
-        FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
-            .addOnSuccessListener {
-                currentUser = it.toObject(USER::class.java)!!
-                val a=USER(currentUser.name,currentUser.imageUrl,currentUser.thumbImage,currentUser.deviceToken,currentUser.status,"offline",currentUser.uid,currentUser.number,currentUser.statuspic)
-                FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).set(a).addOnSuccessListener {
-                    Log.d(TAG, "now user is offline")
-                }
-            }
-        Log.d(TAG, "onDestroy: activity destroyed")
-    }
 
-    override fun onResumeFragments() {
-        super.onResumeFragments()
-        FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
-            .addOnSuccessListener {
-                currentUser = it.toObject(USER::class.java)!!
-                val a=USER(currentUser.name,currentUser.imageUrl,currentUser.thumbImage,currentUser.deviceToken,currentUser.status,"online",currentUser.uid,currentUser.number,currentUser.statuspic)
-                FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).set(a).addOnSuccessListener {
-                    Log.d(TAG, "onCreate: now user is online")
-                }.addOnFailureListener {
-                    Log.d(TAG, "onCreate: "+it.localizedMessage)
-                }
-            }
-
-    }
+//    override fun onResumeFragments() {
+//        super.onResumeFragments()
+//        FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
+//            .addOnSuccessListener {
+//                currentUser = it.toObject(USER::class.java)!!
+//                val a=USER(currentUser.name,currentUser.imageUrl,currentUser.thumbImage,currentUser.deviceToken,currentUser.status,"online",currentUser.uid,currentUser.number,currentUser.statuspic)
+//                FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).set(a).addOnSuccessListener {
+//                    Log.d(TAG, "onCreate: now user is online")
+//                }.addOnFailureListener {
+//                    Log.d(TAG, "onCreate: "+it.localizedMessage)
+//                }
+//            }
+//
+//    }
     override fun onResume() {
         super.onResume()
         FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
@@ -93,9 +81,10 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-
     override fun onPause() {
-        super.onPause()
+
+
+         super.onPause()
         FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
             .addOnSuccessListener {
                 currentUser = it.toObject(USER::class.java)!!

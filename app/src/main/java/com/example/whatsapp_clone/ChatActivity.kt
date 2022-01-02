@@ -3,10 +3,12 @@ package com.example.whatsapp_clone
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Rect
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -35,6 +37,9 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.jar.Manifest
 import kotlin.random.Random
+import android.view.ViewTreeObserver
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
+
 
 const val USER_ID = "userId"
 const val USER_THUMB_IMAGE = "thumbImage"
@@ -69,28 +74,48 @@ class ChatActivity : AppCompatActivity() {
                 currentUser = it.toObject(USER::class.java)!!
                 val a=USER(currentUser.name,currentUser.imageUrl,currentUser.thumbImage,currentUser.deviceToken,currentUser.status,"online",currentUser.uid,currentUser.number,currentUser.statuspic)
                 FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).set(a).addOnSuccessListener {
-                    Log.d(TAG, "onCreate: now user is online")
+//                    Log.d(TAG, "onCreate: now user is online")
                 }.addOnFailureListener {
                     Log.d(TAG, "onCreate: "+it.localizedMessage)
                 }
             }
-
-
-
-
-
-
         friendId= intent.getStringExtra("UID").toString()
+gobackasap.setOnClickListener {
+    finish()
+}
+        var actionBar = getSupportActionBar()
+
+        // showing the back button in action bar
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true)
+        }
+
         number=intent.getStringExtra("number").toString()
         name=intent.getStringExtra("NAME").toString()
         image=intent.getStringExtra("THUMBIMAGE").toString()
+        updateReadCount()
         Log.d(TAG, "onCreate: "+number)
         FirebaseFirestore.getInstance().collection("users").document(friendId).addSnapshotListener { value, error ->
 
                 val p= value!!.toObject(USER::class.java)
-            userstatus.visibility= View.VISIBLE
-            userstatus.text=p!!.online
-//                Log.d(TAG, "onCreate: "+ p!!.online)
+            if (p!!.online=="Typing..."){
+                Log.d(TAG, "user is offline now")
+                userstatus.visibility=View.VISIBLE
+                userstatus.text=p!!.online
+                userstatus.setTextColor(resources.getColor(R.color.teal_200))
+            }
+            else if ((p!!.online)=="offline"){
+                Log.d(TAG, "user is offline now")
+                userstatus.visibility=View.GONE
+            }
+            else{
+                Log.d(TAG, "user is now"+p!!.online)
+                userstatus.visibility=View.VISIBLE
+                userstatus.setTextColor(resources.getColor(R.color.white))
+                userstatus.text=p.online
+
+            }
+
 
             }
 
@@ -308,13 +333,15 @@ class ChatActivity : AppCompatActivity() {
         db.reference.child("calls/$toUser/$fromUser")
 
     override fun onResume() {
+
         super.onResume()
+        updateReadCount()
         FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
             .addOnSuccessListener {
                 currentUser = it.toObject(USER::class.java)!!
                 val a=USER(currentUser.name,currentUser.imageUrl,currentUser.thumbImage,currentUser.deviceToken,currentUser.status,"online",currentUser.uid,currentUser.number,currentUser.statuspic)
                 FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).set(a).addOnSuccessListener {
-                    Log.d(TAG, "onCreate: now user is online")
+//                    Log.d(TAG, "onCreate: now user is online")
                 }.addOnFailureListener {
                     Log.d(TAG, "onCreate: "+it.localizedMessage)
                 }
@@ -322,7 +349,7 @@ class ChatActivity : AppCompatActivity() {
         rootView.viewTreeObserver
             .addOnGlobalLayoutListener(keyboardVisibilityHelper.visibilityListener)
     }
- 
+
     override fun onStart() {
         super.onStart()
         FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
@@ -330,36 +357,28 @@ class ChatActivity : AppCompatActivity() {
                 currentUser = it.toObject(USER::class.java)!!
                 val a=USER(currentUser.name,currentUser.imageUrl,currentUser.thumbImage,currentUser.deviceToken,currentUser.status,"online",currentUser.uid,currentUser.number,currentUser.statuspic)
                 FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).set(a).addOnSuccessListener {
-                    Log.d(TAG, "onCreate: now user is online")
+//                    Log.d(TAG, "onCreate: now user is online")
                 }.addOnFailureListener {
                     Log.d(TAG, "onCreate: "+it.localizedMessage)
                 }
             }
     }
-    override fun onStop() {
-        super.onStop()
-        FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
+
+    override fun onPause() {
+        super.onPause()
+                FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
             .addOnSuccessListener {
                 currentUser = it.toObject(USER::class.java)!!
                 val a=USER(currentUser.name,currentUser.imageUrl,currentUser.thumbImage,currentUser.deviceToken,currentUser.status,"offline",currentUser.uid,currentUser.number,currentUser.statuspic)
                 FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).set(a).addOnSuccessListener {
-                    Log.d(TAG, "now user is offline")
+//                    Log.d(TAG, "now user is offline")
                 }
             }
-        Log.d(TAG, "onDestroy: activity destroyed")
+        Log.d(TAG, "onPause: activity pause")
+
     }
-    override fun onDestroy() {
-        super.onDestroy()
-        FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
-            .addOnSuccessListener {
-                currentUser = it.toObject(USER::class.java)!!
-                val a=USER(currentUser.name,currentUser.imageUrl,currentUser.thumbImage,currentUser.deviceToken,currentUser.status,"offline",currentUser.uid,currentUser.number,currentUser.statuspic)
-                FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).set(a).addOnSuccessListener {
-                    Log.d(TAG, "now user is offline")
-                }
-            }
-        Log.d(TAG, "onDestroy: activity destroyed")
-    }
+
+
 
     companion object {
 

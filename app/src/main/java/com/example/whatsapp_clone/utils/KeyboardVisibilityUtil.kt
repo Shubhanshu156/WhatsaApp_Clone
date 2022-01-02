@@ -2,12 +2,18 @@
 package com.example.whatsapp_clone.utils
 
 import android.graphics.Rect
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import com.example.whatsapp_clone.USER
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class KeyboardVisibilityUtil(contentView: View, onKeyboardShown: (Boolean) -> Unit) {
 
     private var currentKeyboardState: Boolean = false
-
+    val TAG="keyboard"
+lateinit var currentUser:USER
     val visibilityListener = {
         val rectangle = Rect()
         contentView.getWindowVisibleDisplayFrame(rectangle)
@@ -21,8 +27,24 @@ class KeyboardVisibilityUtil(contentView: View, onKeyboardShown: (Boolean) -> Un
 
         if (currentKeyboardState != isKeyboardNowVisible) {
             if (isKeyboardNowVisible) {
+                FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
+                    .addOnSuccessListener {
+                        currentUser = it.toObject(USER::class.java)!!
+                        val a= USER(currentUser.name,currentUser.imageUrl,currentUser.thumbImage,currentUser.deviceToken,currentUser.status,"Typing...",currentUser.uid,currentUser.number,currentUser.statuspic)
+                        FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).set(a).addOnSuccessListener {
+                            Log.d(TAG, "now user is offline")
+                        }
+                    }
                 onKeyboardShown(false)
             } else {
+                FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).get()
+                    .addOnSuccessListener {
+                        currentUser = it.toObject(USER::class.java)!!
+                        val a= USER(currentUser.name,currentUser.imageUrl,currentUser.thumbImage,currentUser.deviceToken,currentUser.status,"online",currentUser.uid,currentUser.number,currentUser.statuspic)
+                        FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().uid!!).set(a).addOnSuccessListener {
+                            Log.d(TAG, "now user is offline")
+                        }
+                    }
                 onKeyboardShown(true)
             }
         }
