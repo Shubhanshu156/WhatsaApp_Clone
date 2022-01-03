@@ -1,9 +1,8 @@
 
 # Wallpaper
 
-[![Build](https://github.com/Haid-Faiz/QuizLand/actions/workflows/gradle_build_ci.yml/badge.svg)](https://github.com/Shubhanshu156/Wallpaper-app/raw/master/app/release/app-release.apk)
-[![Build](https://github.com/Haid-Faiz/QuizLand/actions/workflows/gradle_build_ci.yml/badge.svg)](https://github.com/Haid-Faiz/QuizLand/actions/workflows/gradle_build_ci.yml)
-[![Lint](https://github.com/Haid-Faiz/QuizLand/actions/workflows/lint_check_ci.yml/badge.svg)](https://github.com/Haid-Faiz/QuizLand/actions/workflows/lint_check_ci.yml)
+[![Build](https://img.shields.io/badge/-Download%20-brightgreen)](https://github.com/Shubhanshu156/Wallpaper-app/raw/master/app/release/app-release.apk)
+
 [![Platform](https://img.shields.io/badge/platform-android-blue.svg)](http://developer.android.com/index.html)
 [![API](https://img.shields.io/badge/API-23%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=23)
 
