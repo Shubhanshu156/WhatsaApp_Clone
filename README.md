@@ -17,7 +17,7 @@
 <table>
       <ul>
       <li>
-         <h4>Account Activity|Home Fragment |Ringtone Fragment<h4>
+         <h4>Create Account|Chat Activity |Set Status|Call Anyone<h4>
           </li>
    </ul>
   <tr>
