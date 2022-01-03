@@ -8,17 +8,15 @@
 
 
 **WhatsAppCLone** is a  Clone of WhatsApp Messaging App.It allows users to send text messages and Make Call and Share Your Status(Storied) with Your Friends
-***You can Install the Wallpaper app from below 👇***</br>
-[Download Now](https://github.com/Shubhanshu156/Wallpaper-app/raw/master/app/release/app-release.apk)
+***You can Install the WhatsAppClone app from below 👇***</br>
+[Download Now](https://github.com/Shubhanshu156/WhatsaApp_Clone/blob/master/app/release/app-release.apk)
 
 
 
 
 <table>
       <ul>
-      <li>
-     
-          </li>
+
    </ul>
   <tr>
         <td><h4>Create Account</h4><img src = "https://github.com/Shubhanshu156/WhatsaApp_Clone/blob/master/20220102_195427.gif" height = "370" width="180"></td>
