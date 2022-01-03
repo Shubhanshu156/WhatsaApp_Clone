@@ -17,14 +17,14 @@
 <table>
       <ul>
       <li>
-         <h4>Create Account|Chat Activity |Set Status|Call Anyone<h4>
+     
           </li>
    </ul>
   <tr>
-        <td><h3>Create Account</h3><img src = "https://github.com/Shubhanshu156/WhatsaApp_Clone/blob/master/20220102_195427.gif" height = "370" width="180"></td>
-<td><h3>Chat Activity</h3><img src = "https://github.com/Shubhanshu156/WhatsaApp_Clone/blob/master/20220103_161847.gif" height = "370" width="180"></td>
-<td><h3>Set Status</h3><img src = "https://github.com/Shubhanshu156/WhatsaApp_Clone/blob/master/20220103_163119.gif" height = "370" width="180"></td>
-        <td><h3>Call Anyone</h3><img src = "https://github.com/Shubhanshu156/WhatsaApp_Clone/blob/master/20220103_164745.gif" height = "370" width="180"></td>
+        <td><h4>Create Account</h4><img src = "https://github.com/Shubhanshu156/WhatsaApp_Clone/blob/master/20220102_195427.gif" height = "370" width="180"></td>
+<td style="padding-right: 10px"><h4>Chat Activity</h4><img src = "https://github.com/Shubhanshu156/WhatsaApp_Clone/blob/master/20220103_161847.gif" height = "370" width="180"></td>
+<td style="padding-right: 10px"><h4>Set Status</h4><img src = "https://github.com/Shubhanshu156/WhatsaApp_Clone/blob/master/20220103_163119.gif" height = "370" width="180"></td>
+        <td style="padding-right: 10px"><h4>Call Anyone</h4><img src = "https://github.com/Shubhanshu156/WhatsaApp_Clone/blob/master/20220103_164745.gif" height = "370" width="180"></td>
   </tr>
 </table> 
    
